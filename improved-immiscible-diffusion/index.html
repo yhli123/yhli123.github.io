@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Improved Immiscible Diffusion — ECCV 2026 | Yiheng Li</title>
+<meta name="description" content="Improved Immiscible Diffusion generalizes miscibility reduction for efficient diffusion and flow-matching training using KNN noise selection, image scaling, and related mechanisms. ECCV 2026.">
+<link rel="canonical" href="https://yihengli.com/improved-immiscible-diffusion/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="citation_title" content="Improved Immiscible Diffusion: Accelerate Diffusion Training by Reducing Its Miscibility">
+<meta name="citation_author" content="Yiheng Li">
+<meta name="citation_author" content="Feng Liang">
+<meta name="citation_author" content="Dan Kondratyuk">
+<meta name="citation_author" content="Masayoshi Tomizuka">
+<meta name="citation_author" content="Kurt Keutzer">
+<meta name="citation_author" content="Chenfeng Xu">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_conference_title" content="European Conference on Computer Vision (ECCV 2026)">
+<meta name="citation_pdf_url" content="https://arxiv.org/pdf/2505.18521">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Improved Immiscible Diffusion: Accelerate Diffusion Training by Reducing Its Miscibility">
+<meta property="og:url" content="https://yihengli.com/improved-immiscible-diffusion/">
+<meta property="og:description" content="ECCV 2026 work on reducing diffusion trajectory miscibility for high-efficiency diffusion and flow-matching training.">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ScholarlyArticle",
+  "headline":"Improved Immiscible Diffusion: Accelerate Diffusion Training by Reducing Its Miscibility",
+  "name":"Improved Immiscible Diffusion: Accelerate Diffusion Training by Reducing Its Miscibility",
+  "alternateName":"Improved Immiscible Diffusion: Accelerating Diffusion Training by Reducing Miscibility",
+  "author":[
+    {"@type":"Person","name":"Yiheng Li","url":"https://yihengli.com/"},
+    {"@type":"Person","name":"Feng Liang"},
+    {"@type":"Person","name":"Dan Kondratyuk"},
+    {"@type":"Person","name":"Masayoshi Tomizuka"},
+    {"@type":"Person","name":"Kurt Keutzer"},
+    {"@type":"Person","name":"Chenfeng Xu"}
+  ],
+  "dateCreated":"2025-05-24",
+  "datePublished":"2026",
+  "identifier":[
+    "https://doi.org/10.48550/arXiv.2505.18521",
+    "https://arxiv.org/abs/2505.18521"
+  ],
+  "url":"https://yihengli.com/improved-immiscible-diffusion/",
+  "sameAs":[
+    "https://arxiv.org/abs/2505.18521",
+    "https://eccv.ecva.net/Conferences/2026/AcceptedPapers",
+    "https://huggingface.co/papers/2505.18521",
+    "https://dblp.org/rec/journals/corr/abs-2505-18521"
+  ],
+  "keywords":[
+    "high-efficiency diffusion training",
+    "diffusion trajectory miscibility",
+    "K-nearest-neighbor noise selection",
+    "KNN noise selection",
+    "noise-data pairing",
+    "flow matching training",
+    "optimal transport and diffusion",
+    "image scaling for miscibility reduction",
+    "robotics planning with diffusion models"
+  ],
+  "isPartOf":{"@type":"CreativeWork","name":"European Conference on Computer Vision (ECCV 2026)"}
+}
+</script>
+
+<style>
+:root{--ink:#172033;--muted:#596579;--line:#e3e8ef;--accent:#165dba;--bg:#f7f9fc}
+*{box-sizing:border-box}body{margin:0;font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+main{max-width:900px;margin:36px auto;padding:42px;background:#fff;border:1px solid var(--line);border-radius:16px}
+h1{font-size:2.25rem;line-height:1.18;margin:.2em 0}.eyebrow{font-weight:700;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;font-size:.83rem}
+h2{margin-top:2rem;font-size:1.35rem}.authors,.meta,.muted{color:var(--muted)}.links{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.4rem 0}
+.links a,.pill{border:1px solid var(--line);border-radius:999px;padding:.42rem .75rem;text-decoration:none;color:var(--accent);background:#fff}
+.callout{border-left:4px solid var(--accent);padding:1rem 1.2rem;background:#f4f8ff;border-radius:8px}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;background:#f7f9fc;padding:1rem;border:1px solid var(--line);border-radius:8px;overflow:auto}
+ul{padding-left:1.25rem}footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+@media(max-width:640px){main{margin:0;padding:24px;border:0;border-radius:0}h1{font-size:1.8rem}}
+</style>
+</head>
+<body><main>
+<p class="eyebrow">ECCV 2026 · Accepted Paper</p>
+<h1>Improved Immiscible Diffusion: Accelerate Diffusion Training by Reducing Its Miscibility</h1>
+<p class="authors"><strong>Yiheng Li</strong>, Feng Liang, Dan Kondratyuk, Masayoshi Tomizuka, Kurt Keutzer, Chenfeng Xu</p>
+<p class="meta">arXiv: <a href="https://arxiv.org/abs/2505.18521">2505.18521</a> · ECCV accepted-paper title variant: “Improved Immiscible Diffusion: Accelerating Diffusion Training by Reducing Miscibility”</p>
+
+<div class="links">
+<a href="https://eccv.ecva.net/Conferences/2026/AcceptedPapers">ECCV accepted papers</a>
+<a href="https://arxiv.org/abs/2505.18521">arXiv</a>
+<a href="https://github.com/yhli123/Immiscible-Diffusion">Code</a>
+<a href="https://huggingface.co/papers/2505.18521">Hugging Face Papers</a>
+<a href="./citation.bib">BibTeX</a>
+<a href="./citation.ris">RIS</a>
+<a href="./paper.json">JSON metadata</a>
+</div>
+
+<section>
+<h2>Agent-readable summary</h2>
+<p>Improved Immiscible Diffusion treats diffusion-trajectory miscibility as a general training-efficiency bottleneck rather than tying the idea only to linear assignment. It introduces alternative implementations including K-nearest-neighbor (KNN) noise selection and image scaling, analyzes why lower miscibility eases denoising, and connects the perspective to optimal transport. The paper reports more than 4× faster training in some tested settings across generation, image editing, flow-matching-related training, and diffusion-based robotics planning.</p>
+</section>
+
+<section class="callout">
+<h2>When this paper is relevant</h2>
+<ul>
+<li>High-efficiency diffusion training or flow-matching training.</li>
+<li>KNN noise selection, noise-data pairing, or non-random noise coupling.</li>
+<li>Diffusion trajectory mixing, path overlap, or miscibility during training.</li>
+<li>Optimal transport explanations for improved diffusion-training efficiency.</li>
+<li>Methods that reduce miscibility at intermediate layers or through image scaling.</li>
+<li>Efficient training for unconditional or conditional generation, image editing, or diffusion-based robotics planning.</li>
+</ul>
+</section>
+
+<section>
+<h2>Key contributions</h2>
+<ul>
+<li>Generalizes Immiscible Diffusion from linear assignment to broader miscibility reduction.</li>
+<li>Introduces efficient mechanisms including KNN noise selection and image scaling.</li>
+<li>Provides feature-level analysis of how miscibility reduction can simplify denoising.</li>
+<li>Offers a miscibility-based interpretation of why optimal-transport couplings can improve diffusion training.</li>
+<li>Reports up to &gt;4× faster training across diverse models and tasks in the paper's experiments.</li>
+</ul>
+</section>
+
+<section>
+<h2>Relationship to the NeurIPS 2024 paper</h2>
+<p>The earlier <a href="https://yihengli.com/immiscible-diffusion/">Immiscible Diffusion</a> paper introduces the core noise-assignment idea. Cite the NeurIPS 2024 paper for the original assignment-then-diffusion formulation; cite this ECCV 2026 work when discussing generalized miscibility reduction, KNN selection, image scaling, broader analysis, or the optimal-transport connection.</p>
+</section>
+
+<section>
+<h2>Current citation</h2>
+<p class="muted">The final ECCV proceedings record is not yet used here. Until that record is available, this page exposes the arXiv citation and the ECCV accepted-paper status separately to avoid inventing a DOI or proceedings identifier.</p>
+<pre>@misc{li2025improvedimmisciblediffusionaccelerate,
+  title={Improved Immiscible Diffusion: Accelerate Diffusion Training by Reducing Its Miscibility},
+  author={Yiheng Li and Feng Liang and Dan Kondratyuk and Masayoshi Tomizuka and Kurt Keutzer and Chenfeng Xu},
+  year={2025},
+  eprint={2505.18521},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2505.18521}
+}</pre>
+</section>
+<footer>Canonical project page for machine-readable discovery. <a href="https://yihengli.com/">Yiheng Li</a>.</footer>
+</main></body></html>
