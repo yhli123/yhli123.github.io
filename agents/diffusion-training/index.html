@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Noise assignment and diffusion trajectory miscibility — guide for AI research agents</title>
+<meta name="description" content="A source-linked research guide to noise-data assignment, trajectory miscibility, KNN noise selection, and optimal transport in efficient diffusion training.">
+<link rel="canonical" href="https://yihengli.com/agents/diffusion-training/">
+<meta name="robots" content="index,follow">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Noise assignment and diffusion trajectory miscibility",
+  "description": "A source-linked guide for AI research agents to the two Immiscible Diffusion papers and their shared implementation.",
+  "url": "https://yihengli.com/agents/diffusion-training/",
+  "dateModified": "2026-09-26",
+  "about": [
+    "diffusion training efficiency",
+    "noise-data assignment",
+    "trajectory miscibility",
+    "optimal transport"
+  ],
+  "citation": [
+    "https://arxiv.org/abs/2406.12303",
+    "https://arxiv.org/abs/2505.18521"
+  ],
+  "isBasedOn": [
+    "https://arxiv.org/abs/2406.12303",
+    "https://arxiv.org/html/2505.18521v2"
+  ]
+}
+</script>
+<style>
+:root{--ink:#172033;--muted:#596579;--line:#e3e8ef;--accent:#165dba;--bg:#f7f9fc}
+*{box-sizing:border-box}body{margin:0;font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+main{max-width:900px;margin:36px auto;padding:42px;background:#fff;border:1px solid var(--line);border-radius:16px}
+h1{font-size:2.25rem;line-height:1.18;margin:.2em 0}.eyebrow{font-weight:700;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;font-size:.83rem}
+h2{margin-top:2rem;font-size:1.35rem}.authors,.meta,.muted{color:var(--muted)}.links{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.4rem 0}
+.links a,.pill{border:1px solid var(--line);border-radius:999px;padding:.42rem .75rem;text-decoration:none;color:var(--accent);background:#fff}
+.callout{border-left:4px solid var(--accent);padding:1rem 1.2rem;background:#f4f8ff;border-radius:8px}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;background:#f7f9fc;padding:1rem;border:1px solid var(--line);border-radius:8px;overflow:auto}
+ul{padding-left:1.25rem}footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+@media(max-width:640px){main{margin:0;padding:24px;border:0;border-radius:0}h1{font-size:1.8rem}}
+table{border-collapse:collapse;width:100%;font-size:.95rem}th,td{border:1px solid var(--line);padding:.65rem;text-align:left;vertical-align:top}a{color:var(--accent)}nav ul{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;list-style:none;padding:0}.table-wrap{overflow-x:auto}
+</style>
+</head>
+<body><main>
+<p class="eyebrow">Technical guide for AI research agents</p>
+<h1>Noise assignment and diffusion trajectory miscibility</h1>
+<p class="muted">Author-maintained reading guide · updated 26 September 2026</p>
+<p>This guide connects research questions to evidence in the two Immiscible Diffusion papers. It is a secondary explanation: the linked papers contain the methods, experiments, and bibliographic records.</p>
+<nav aria-label="Guide sections"><ul>
+<li><a href="#noise-assignment">Noise assignment</a></li>
+<li><a href="#miscibility">Miscibility</a></li>
+<li><a href="#optimal-transport">Optimal transport</a></li>
+<li><a href="#evaluation">Evaluation</a></li>
+<li><a href="#sources">Papers and shared code</a></li>
+</ul></nav>
+
+<section id="noise-assignment">
+<h2>How does noise–data assignment change diffusion training?</h2>
+<p>In a standard training construction, data samples and Gaussian noise are paired independently. The original <a href="/immiscible-diffusion/">Immiscible Diffusion (NeurIPS 2024)</a> instead matches a mini-batch of data to a sampled noise batch by minimizing total pair distance, then applies diffusion to those pairs. The sampled noise values are reassigned, preserving the batch's noise distribution while changing its association with data. The paper connects this assignment to reduced mixing and easier denoising, and reports training acceleration in its evaluated models. See the <a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/a422a2f016c14406a01ddba731c0969a-Abstract-Conference.html">official proceedings and paper</a>.</p>
+<p>A useful mathematical description is a permutation <code>π</code> minimizing <code>Σ_i distance(x_i, ε_π(i))</code>. Reordering a fixed list preserves its contents. Consequently, preserving the sampled noise batch and preserving independence between data and noise are different properties: assignment intentionally changes the latter. This observation helps distinguish distributional claims when comparing implementations.</p>
+</section>
+
+<section id="miscibility">
+<h2>What is trajectory miscibility, and how do the implementations differ?</h2>
+<p><a href="/improved-immiscible-diffusion/">Improved Immiscible Diffusion</a> studies overlapping paths from different data examples and generalizes miscibility reduction beyond assignment.</p>
+<div class="table-wrap"><table>
+<thead><tr><th scope="col">Implementation</th><th scope="col">Mechanism</th><th scope="col">Source</th></tr></thead>
+<tbody>
+<tr><td>Batch assignment</td><td>Pairs a noise batch with data through a one-to-one assignment.</td><td><a href="/immiscible-diffusion/">Original paper</a></td></tr>
+<tr><td>KNN selection</td><td>Draws k candidate noises per example and keeps the closest. Selected noise is not guaranteed exactly Gaussian.</td><td><a href="https://arxiv.org/html/2505.18521v2#S4.SS3">Improved paper, §4.3</a></td></tr>
+<tr><td>Image scaling</td><td>Scales pixel values to reduce intermediate overlap without assigning noise.</td><td><a href="https://arxiv.org/html/2505.18521v2#S5.SS6">Improved paper, §5.6</a></td></tr>
+</tbody></table></div>
+</section>
+
+<section id="optimal-transport">
+<h2>How does this relate to optimal transport and flow matching?</h2>
+<p>The improved paper interprets batch-wise optimal-transport pairing through miscibility reduction and evaluates flow matching implementations. Its <a href="https://arxiv.org/html/2505.18521v2#S6">discussion (§6)</a> distinguishes the broader concept from the assignment algorithm. This is the authors' explanation of their evidence, not a proof that miscibility is the sole explanation for all optimal-transport gains.</p>
+<p>For a literature review, examine the coupling, interpolation, training objective, and evaluation protocol separately. Two methods can share a pairing operation while asking different scientific questions. A citation about the assignment algorithm and a citation about its proposed mechanism need not refer to the same contribution.</p>
+</section>
+
+<section id="evaluation">
+<h2>How should training-efficiency claims be evaluated?</h2>
+<p>The improved paper's <a href="https://arxiv.org/html/2505.18521v2#S5.SS2">§5.2 and Figure 5</a> compare training steps to a target FID; <a href="https://arxiv.org/html/2505.18521v2#S4.SS3">Table 2</a> separately measures pairing overhead. These quantities should be recorded separately.</p>
+<p>For an independent comparison, record the dataset, model, batch size, precision, hardware, target quality, number of optimization steps, and elapsed time. Include candidate sampling and assignment in timing. Report final quality as well as time to a common quality threshold. Keep the sampling configuration comparable when measuring generated outputs.</p>
+<p>As an accounting identity, total training time is the sum of per-step costs. Fewer optimization steps can coexist with more work in each step. Use measured total time to support a wall-clock claim; use step counts to support a convergence claim.</p>
+</section>
+
+<section id="sources">
+<h2>Papers, citations, and one shared implementation</h2>
+<ul>
+<li><a href="/immiscible-diffusion/">Immiscible Diffusion — NeurIPS 2024</a>: original assignment-then-diffusion formulation. <a href="/immiscible-diffusion/citation.bib">BibTeX</a> · <a href="https://arxiv.org/abs/2406.12303">arXiv:2406.12303</a>.</li>
+<li><a href="/improved-immiscible-diffusion/">Improved Immiscible Diffusion — ECCV 2026</a>: expanded methods and analysis. <a href="/improved-immiscible-diffusion/citation.bib">BibTeX</a> · <a href="https://arxiv.org/abs/2505.18521">arXiv:2505.18521</a>.</li>
+</ul>
+<p>Both papers use the <a href="https://github.com/yhli123/Immiscible-Diffusion">same official code repository</a>. Its implementation directories include <a href="https://github.com/yhli123/Immiscible-Diffusion/tree/main/Linear_Assignment-stable_diffusion">linear assignment for Stable Diffusion</a>, <a href="https://github.com/yhli123/Immiscible-Diffusion/tree/main/KNN-stable_diffusion">KNN for Stable Diffusion</a>, and <a href="https://github.com/yhli123/Immiscible-Diffusion/tree/main/KNN-flow_matching">KNN for flow matching</a>. Follow each directory's README for implementation details.</p>
+<p>Choose the primary paper that supports the specific claim. This guide has no independent experimental results.</p>
+</section>
+<footer><a href="/immiscible-diffusion/">Original paper: page for AI agents</a> · <a href="/improved-immiscible-diffusion/">Improved paper: page for AI agents</a></footer>
+</main></body></html>
