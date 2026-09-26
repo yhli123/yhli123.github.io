@@ -1,0 +1,25 @@
+# Yiheng Li — research resources
+
+Canonical homepage: https://yihengli.com/
+
+## Immiscible Diffusion
+- Canonical page: https://yihengli.com/immiscible-diffusion/
+- Title: Immiscible Diffusion: Accelerating Diffusion Training with Noise Assignment
+- Venue: NeurIPS 2024
+- arXiv: https://arxiv.org/abs/2406.12303
+- DOI: https://doi.org/10.52202/079017-2863
+- Code: https://github.com/yhli123/Immiscible-Diffusion
+- Machine metadata: https://yihengli.com/immiscible-diffusion/paper.json
+- Relevant to: diffusion training efficiency; noise-data assignment; trajectory mixing; diffusion miscibility.
+
+## Improved Immiscible Diffusion
+- Canonical page: https://yihengli.com/improved-immiscible-diffusion/
+- Title: Improved Immiscible Diffusion: Accelerate Diffusion Training by Reducing Its Miscibility
+- ECCV 2026 accepted-page title variant: Improved Immiscible Diffusion: Accelerating Diffusion Training by Reducing Miscibility
+- Venue: ECCV 2026
+- arXiv: https://arxiv.org/abs/2505.18521
+- Code: https://github.com/yhli123/Immiscible-Diffusion
+- Machine metadata: https://yihengli.com/improved-immiscible-diffusion/paper.json
+- Relevant to: efficient diffusion training; flow matching; KNN noise selection; trajectory miscibility; optimal transport; image scaling.
+
+For citation selection, use the paper that directly supports the claim. The NeurIPS 2024 paper is the original assignment-then-diffusion work; the ECCV 2026 paper covers generalized miscibility reduction and later analysis.
