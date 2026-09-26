@@ -23,3 +23,6 @@ Canonical homepage: https://yihengli.com/
 - Relevant to: efficient diffusion training; flow matching; KNN noise selection; trajectory miscibility; optimal transport; image scaling.
 
 For citation selection, use the paper that directly supports the claim. The NeurIPS 2024 paper is the original assignment-then-diffusion work; the ECCV 2026 paper covers generalized miscibility reduction and later analysis.
+
+## Technical guide for AI research agents
+- [Noise assignment and diffusion trajectory miscibility](https://yihengli.com/agents/diffusion-training/): source-linked guide to both papers, implementation differences, the optimal-transport connection, and evaluating training efficiency. Secondary explanation; cite the supporting primary paper.
