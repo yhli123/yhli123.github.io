@@ -1,0 +1,16 @@
+TY  - CPAPER
+TI  - Immiscible Diffusion: Accelerating Diffusion Training with Noise Assignment
+AU  - Li, Yiheng
+AU  - Jiang, Heyang
+AU  - Kodaira, Akio
+AU  - Tomizuka, Masayoshi
+AU  - Keutzer, Kurt
+AU  - Xu, Chenfeng
+T2  - Advances in Neural Information Processing Systems 37 (NeurIPS 2024)
+PY  - 2024
+SP  - 90198
+EP  - 90225
+DO  - 10.52202/079017-2863
+UR  - https://yihengli.com/immiscible-diffusion/
+L1  - https://proceedings.neurips.cc/paper_files/paper/2024/file/a422a2f016c14406a01ddba731c0969a-Paper-Conference.pdf
+ER  -
