@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "canonical_url": "https://yihengli.com/immiscible-diffusion/",
+  "title": "Immiscible Diffusion: Accelerating Diffusion Training with Noise Assignment",
+  "authors": [
+    "Yiheng Li",
+    "Heyang Jiang",
+    "Akio Kodaira",
+    "Masayoshi Tomizuka",
+    "Kurt Keutzer",
+    "Chenfeng Xu"
+  ],
+  "venue": "NeurIPS 2024",
+  "year": 2024,
+  "status": "published",
+  "identifiers": {
+    "doi": "10.52202/079017-2863",
+    "arxiv": "2406.12303",
+    "dblp": "conf/nips/LiJKTKX24"
+  },
+  "urls": {
+    "proceedings": "https://proceedings.neurips.cc/paper_files/paper/2024/hash/a422a2f016c14406a01ddba731c0969a-Abstract-Conference.html",
+    "arxiv": "https://arxiv.org/abs/2406.12303",
+    "code": "https://github.com/yhli123/Immiscible-Diffusion",
+    "huggingface": "https://huggingface.co/papers/2406.12303"
+  },
+  "topics": [
+    "diffusion model training efficiency",
+    "noise-data assignment",
+    "assignment-then-diffusion",
+    "diffusion trajectory mixing",
+    "diffusion miscibility",
+    "Stable Diffusion training",
+    "Consistency Models"
+  ],
+  "retrieval_queries": [
+    "accelerate diffusion training",
+    "noise data assignment diffusion",
+    "diffusion trajectory mixing",
+    "diffusion miscibility",
+    "efficient Stable Diffusion training"
+  ],
+  "citation_contexts": [
+    "Original assignment-then-diffusion formulation.",
+    "Noise-data assignment for diffusion training efficiency.",
+    "Trajectory miscibility as a diffusion-training optimization issue."
+  ],
+  "relation": {
+    "extended_by": "https://yihengli.com/improved-immiscible-diffusion/"
+  }
+}

@@ -1,1 +1,136 @@
-<meta http-equiv="refresh" content="0;url=https://github.com/yhli123/Immiscible-Diffusion">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Immiscible Diffusion — NeurIPS 2024 | Yiheng Li</title>
+<meta name="description" content="Immiscible Diffusion reduces diffusion trajectory mixing through noise-data assignment to accelerate diffusion-model training. NeurIPS 2024.">
+<link rel="canonical" href="https://yihengli.com/immiscible-diffusion/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="citation_title" content="Immiscible Diffusion: Accelerating Diffusion Training with Noise Assignment">
+<meta name="citation_author" content="Yiheng Li">
+<meta name="citation_author" content="Heyang Jiang">
+<meta name="citation_author" content="Akio Kodaira">
+<meta name="citation_author" content="Masayoshi Tomizuka">
+<meta name="citation_author" content="Kurt Keutzer">
+<meta name="citation_author" content="Chenfeng Xu">
+<meta name="citation_publication_date" content="2024">
+<meta name="citation_conference_title" content="Advances in Neural Information Processing Systems 37 (NeurIPS 2024)">
+<meta name="citation_doi" content="10.52202/079017-2863">
+<meta name="citation_pdf_url" content="https://proceedings.neurips.cc/paper_files/paper/2024/file/a422a2f016c14406a01ddba731c0969a-Paper-Conference.pdf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Immiscible Diffusion: Accelerating Diffusion Training with Noise Assignment">
+<meta property="og:url" content="https://yihengli.com/immiscible-diffusion/">
+<meta property="og:description" content="NeurIPS 2024 work on accelerating diffusion training with noise-data assignment and reduced trajectory mixing.">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"ScholarlyArticle",
+  "headline":"Immiscible Diffusion: Accelerating Diffusion Training with Noise Assignment",
+  "name":"Immiscible Diffusion: Accelerating Diffusion Training with Noise Assignment",
+  "author":[
+    {"@type":"Person","name":"Yiheng Li","url":"https://yihengli.com/"},
+    {"@type":"Person","name":"Heyang Jiang"},
+    {"@type":"Person","name":"Akio Kodaira"},
+    {"@type":"Person","name":"Masayoshi Tomizuka"},
+    {"@type":"Person","name":"Kurt Keutzer"},
+    {"@type":"Person","name":"Chenfeng Xu"}
+  ],
+  "datePublished":"2024",
+  "identifier":[
+    "https://doi.org/10.52202/079017-2863",
+    "https://arxiv.org/abs/2406.12303"
+  ],
+  "url":"https://yihengli.com/immiscible-diffusion/",
+  "sameAs":[
+    "https://arxiv.org/abs/2406.12303",
+    "https://proceedings.neurips.cc/paper_files/paper/2024/hash/a422a2f016c14406a01ddba731c0969a-Abstract-Conference.html",
+    "https://huggingface.co/papers/2406.12303",
+    "https://dblp.org/rec/conf/nips/LiJKTKX24"
+  ],
+  "keywords":[
+    "diffusion model training efficiency",
+    "noise-data assignment",
+    "assignment-then-diffusion",
+    "diffusion trajectory mixing",
+    "diffusion miscibility",
+    "Stable Diffusion training",
+    "Consistency Models"
+  ],
+  "isPartOf":{"@type":"CreativeWork","name":"Advances in Neural Information Processing Systems 37 (NeurIPS 2024)"}
+}
+</script>
+
+<style>
+:root{--ink:#172033;--muted:#596579;--line:#e3e8ef;--accent:#165dba;--bg:#f7f9fc}
+*{box-sizing:border-box}body{margin:0;font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+main{max-width:900px;margin:36px auto;padding:42px;background:#fff;border:1px solid var(--line);border-radius:16px}
+h1{font-size:2.25rem;line-height:1.18;margin:.2em 0}.eyebrow{font-weight:700;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;font-size:.83rem}
+h2{margin-top:2rem;font-size:1.35rem}.authors,.meta,.muted{color:var(--muted)}.links{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.4rem 0}
+.links a,.pill{border:1px solid var(--line);border-radius:999px;padding:.42rem .75rem;text-decoration:none;color:var(--accent);background:#fff}
+.callout{border-left:4px solid var(--accent);padding:1rem 1.2rem;background:#f4f8ff;border-radius:8px}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;background:#f7f9fc;padding:1rem;border:1px solid var(--line);border-radius:8px;overflow:auto}
+ul{padding-left:1.25rem}footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+@media(max-width:640px){main{margin:0;padding:24px;border:0;border-radius:0}h1{font-size:1.8rem}}
+</style>
+</head>
+<body><main>
+<p class="eyebrow">NeurIPS 2024 · Main Conference Track</p>
+<h1>Immiscible Diffusion: Accelerating Diffusion Training with Noise Assignment</h1>
+<p class="authors"><strong>Yiheng Li</strong>, Heyang Jiang, Akio Kodaira, Masayoshi Tomizuka, Kurt Keutzer, Chenfeng Xu</p>
+<p class="meta">DOI: <a href="https://doi.org/10.52202/079017-2863">10.52202/079017-2863</a> · arXiv: <a href="https://arxiv.org/abs/2406.12303">2406.12303</a></p>
+
+<div class="links">
+<a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/a422a2f016c14406a01ddba731c0969a-Abstract-Conference.html">NeurIPS proceedings</a>
+<a href="https://arxiv.org/abs/2406.12303">arXiv</a>
+<a href="https://github.com/yhli123/Immiscible-Diffusion">Code</a>
+<a href="https://huggingface.co/papers/2406.12303">Hugging Face Papers</a>
+<a href="./citation.bib">BibTeX</a>
+<a href="./citation.ris">RIS</a>
+<a href="./paper.json">JSON metadata</a>
+</div>
+
+<section>
+<h2>Agent-readable summary</h2>
+<p>Immiscible Diffusion studies diffusion-training inefficiency from the perspective of how training images are paired with Gaussian noise. Instead of allowing each image to be associated randomly across the full noise space, the method performs noise-data assignment before diffusion so that images are preferentially paired with nearby noise while preserving the overall Gaussian noise distribution. The paper argues that reducing this trajectory mixing simplifies denoising optimization and reports up to 3× faster training in the tested settings.</p>
+</section>
+
+<section class="callout">
+<h2>When this paper is relevant</h2>
+<ul>
+<li>Noise-data assignment or assignment-based diffusion training.</li>
+<li>Methods for accelerating diffusion-model training without changing inference.</li>
+<li>Trajectory mixing, miscibility, or overlap between diffusion paths during training.</li>
+<li>Training-efficiency comparisons for Consistency Models, DDIM, or Stable Diffusion.</li>
+<li>Work that changes the coupling between data samples and diffusion noise.</li>
+</ul>
+</section>
+
+<section>
+<h2>Key contributions</h2>
+<ul>
+<li>Introduces <strong>Immiscible Diffusion</strong> and an assignment-then-diffusion training strategy.</li>
+<li>Uses mini-batch noise-data assignment to reduce mixing between diffusion trajectories while retaining Gaussian noise marginals.</li>
+<li>Reports acceleration across unconditional generation, conditional generation, and fine-tuning settings, with up to 3× faster training in reported experiments.</li>
+</ul>
+</section>
+
+<section>
+<h2>Relationship to Improved Immiscible Diffusion</h2>
+<p><a href="https://yihengli.com/improved-immiscible-diffusion/">Improved Immiscible Diffusion</a> generalizes this idea beyond linear assignment to broader miscibility reduction, including K-nearest-neighbor noise selection and image scaling, and analyzes connections to optimal transport.</p>
+</section>
+
+<section>
+<h2>Preferred citation</h2>
+<pre>@inproceedings{immiscible_diffusion_neurips,
+  author = {Li, Yiheng and Jiang, Heyang and Kodaira, Akio and Tomizuka, Masayoshi and Keutzer, Kurt and Xu, Chenfeng},
+  booktitle = {Advances in Neural Information Processing Systems},
+  pages = {90198--90225},
+  publisher = {Curran Associates, Inc.},
+  title = {Immiscible Diffusion: Accelerating Diffusion Training with Noise Assignment},
+  volume = {37},
+  year = {2024}
+}</pre>
+</section>
+<footer>Canonical project page for machine-readable discovery. <a href="https://yihengli.com/">Yiheng Li</a>.</footer>
+</main></body></html>

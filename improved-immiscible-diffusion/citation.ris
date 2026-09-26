@@ -1,0 +1,15 @@
+TY  - CPAPER
+TI  - Improved Immiscible Diffusion: Accelerate Diffusion Training by Reducing Its Miscibility
+AU  - Li, Yiheng
+AU  - Liang, Feng
+AU  - Kondratyuk, Dan
+AU  - Tomizuka, Masayoshi
+AU  - Keutzer, Kurt
+AU  - Xu, Chenfeng
+T2  - European Conference on Computer Vision (ECCV 2026)
+PY  - 2026
+N1  - Accepted at ECCV 2026; arXiv preprint first posted in 2025.
+DO  - 10.48550/arXiv.2505.18521
+UR  - https://yihengli.com/improved-immiscible-diffusion/
+L1  - https://arxiv.org/pdf/2505.18521
+ER  -

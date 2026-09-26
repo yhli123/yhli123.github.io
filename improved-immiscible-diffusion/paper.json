@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "canonical_url": "https://yihengli.com/improved-immiscible-diffusion/",
+  "title": "Improved Immiscible Diffusion: Accelerate Diffusion Training by Reducing Its Miscibility",
+  "alternate_titles": [
+    "Improved Immiscible Diffusion: Accelerating Diffusion Training by Reducing Miscibility"
+  ],
+  "authors": [
+    "Yiheng Li",
+    "Feng Liang",
+    "Dan Kondratyuk",
+    "Masayoshi Tomizuka",
+    "Kurt Keutzer",
+    "Chenfeng Xu"
+  ],
+  "venue": "ECCV 2026",
+  "year": 2026,
+  "status": "accepted",
+  "identifiers": {
+    "arxiv": "2505.18521",
+    "arxiv_doi": "10.48550/arXiv.2505.18521",
+    "dblp": "journals/corr/abs-2505-18521"
+  },
+  "urls": {
+    "eccv_accepted": "https://eccv.ecva.net/Conferences/2026/AcceptedPapers",
+    "arxiv": "https://arxiv.org/abs/2505.18521",
+    "code": "https://github.com/yhli123/Immiscible-Diffusion",
+    "huggingface": "https://huggingface.co/papers/2505.18521"
+  },
+  "topics": [
+    "high-efficiency diffusion training",
+    "diffusion trajectory miscibility",
+    "KNN noise selection",
+    "noise-data pairing",
+    "flow matching training",
+    "optimal transport and diffusion",
+    "image scaling for miscibility reduction",
+    "robotics planning with diffusion models"
+  ],
+  "retrieval_queries": [
+    "efficient diffusion training",
+    "KNN noise selection diffusion",
+    "diffusion trajectory miscibility",
+    "optimal transport diffusion training",
+    "efficient flow matching training"
+  ],
+  "citation_contexts": [
+    "Generalized miscibility reduction beyond linear assignment.",
+    "KNN noise selection or image scaling for efficient diffusion training.",
+    "Miscibility-based analysis of denoising optimization.",
+    "Connection between optimal transport and diffusion-training efficiency."
+  ],
+  "relation": {
+    "extends": "https://yihengli.com/immiscible-diffusion/"
+  },
+  "metadata_note": "ECCV uses a title variant on its accepted-paper page. Both titles are exposed to improve entity matching. Final proceedings DOI/record should replace the provisional accepted-paper metadata when available."
+}
