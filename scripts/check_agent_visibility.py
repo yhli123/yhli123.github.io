@@ -54,7 +54,7 @@ def check_paper(p):
         "project_has_citation_title": "citation_title" in project_text,
         "project_has_jsonld": "application/ld+json" in project_text,
         "arxiv": arxiv["ok"] and p["arxiv"] in arxiv.get("body",""),
-        "semantic_scholar": semantic["ok"],
+        "semantic_scholar": None if semantic.get("status") == 429 else semantic["ok"],
         "openalex": openalex["ok"],
         "hugging_face_papers": hf["ok"],
         "dblp": dblp["ok"],
@@ -64,7 +64,9 @@ def check_paper(p):
         "paper": p["name"],
         "arxiv_id": p["arxiv"],
         "checks": checks,
-        "all_core_ok": all(checks.values()),
+        "all_core_ok": all(value is True for value in checks.values()),
+        "has_failures": any(value is False for value in checks.values()),
+        "inconclusive_checks": [key for key, value in checks.items() if value is None],
         "statuses": {
             "project": project.get("status"),
             "arxiv": arxiv.get("status"),
@@ -90,9 +92,13 @@ def main():
     for r in results:
         print("\n" + r["paper"])
         for key, ok in r["checks"].items():
-            print(("OK   " if ok else "FAIL ") + key)
+            if ok is None:
+                print("::warning::" + r["paper"] + ": " + key +
+                      " inconclusive (HTTP 429 rate limit); this does not establish absence from the index.")
+            else:
+                print(("OK   " if ok else "FAIL ") + key)
 
-    if not all(r["all_core_ok"] for r in results):
+    if any(r["has_failures"] for r in results):
         sys.exit(1)
 
 if __name__ == "__main__":
