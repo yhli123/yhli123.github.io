@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "canonical_url": "https://yihengli.com/immiscible-diffusion-policy/",
+  "title": "Immiscible Diffusion Policy: Preserving Multimodal Robot Actions through Label-Free Noise Assignment",
+  "authors": [
+    "Xiao Zhang",
+    "Yuxin Chen",
+    "Zhixuan Liang",
+    "Guojian Zhan",
+    "Chenran Li",
+    "Chenfeng Xu",
+    "Masayoshi Tomizuka",
+    "Yiheng Li"
+  ],
+  "equal_contribution_authors": [
+    "Xiao Zhang",
+    "Yuxin Chen",
+    "Zhixuan Liang"
+  ],
+  "year": 2026,
+  "status": "preprint",
+  "submission_status": "Under review for ICRA 2027",
+  "identifiers": {
+    "arxiv": "2610.09369"
+  },
+  "urls": {
+    "project": "https://immiscible-diffusion-policy.github.io/",
+    "arxiv": "https://arxiv.org/abs/2610.09369",
+    "pdf": "https://arxiv.org/pdf/2610.09369",
+    "code": "https://github.com/immiscible-diffusion-policy/immiscible-diffusion-policy"
+  },
+  "summary": "Immiscible Diffusion Policy addresses action modality collapse in diffusion-based robot policies. It pairs action chunks with Gaussian noise through one-to-one Hungarian assignment during training, without modality labels or changes to the policy architecture or inference procedure. Experiments with Diffusion Policy (DP) and 3D Diffusion Policy (DP3) cover five simulation tasks and two Unitree G1 humanoid tasks.",
+  "topics": [
+    "diffusion policy",
+    "multimodal robot actions",
+    "action modality collapse",
+    "label-free noise assignment",
+    "Hungarian matching",
+    "imitation learning",
+    "3D Diffusion Policy"
+  ],
+  "citation_contexts": [
+    "Modality collapse despite balanced robot demonstrations.",
+    "One-to-one action-noise assignment for preserving action multimodality.",
+    "Evaluation of modality preservation in simulation and humanoid robot tasks."
+  ],
+  "relation": {
+    "related_work": [
+      "https://yihengli.com/immiscible-diffusion/",
+      "https://yihengli.com/improved-immiscible-diffusion/"
+    ]
+  },
+  "limitations": [
+    "Modality preservation and task success are distinct metrics; task success is lower on some tasks.",
+    "Each humanoid task uses one training seed."
+  ],
+  "sources": [
+    "https://immiscible-diffusion-policy.github.io/",
+    "https://immiscible-diffusion-policy.github.io/#all-results",
+    "https://immiscible-diffusion-policy.github.io/#citation"
+  ]
+}

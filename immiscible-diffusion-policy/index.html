@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Immiscible Diffusion Policy — Page for AI Agents | Yiheng Li</title>
+<meta name="description" content="Immiscible Diffusion Policy addresses action modality collapse in diffusion-based robot policies. It pairs action chunks with Gaussian noise through one-to-one Hungarian assignment during training, without modality labels or changes to the policy architecture or inference procedure. Experiments with Diffusion Policy (DP) and 3D Diffusion Policy (DP3) cover five simulation tasks and two Unitree G1 humanoid tasks.">
+<link rel="canonical" href="https://yihengli.com/immiscible-diffusion-policy/">
+<link rel="alternate" type="application/json" href="./paper.json" title="Paper metadata">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="citation_title" content="Immiscible Diffusion Policy: Preserving Multimodal Robot Actions through Label-Free Noise Assignment">
+<meta name="citation_author" content="Xiao Zhang">
+<meta name="citation_author" content="Yuxin Chen">
+<meta name="citation_author" content="Zhixuan Liang">
+<meta name="citation_author" content="Guojian Zhan">
+<meta name="citation_author" content="Chenran Li">
+<meta name="citation_author" content="Chenfeng Xu">
+<meta name="citation_author" content="Masayoshi Tomizuka">
+<meta name="citation_author" content="Yiheng Li">
+<meta name="citation_publication_date" content="2026">
+<meta name="citation_arxiv_id" content="2610.09369">
+<meta name="citation_pdf_url" content="https://arxiv.org/pdf/2610.09369">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Immiscible Diffusion Policy: Preserving Multimodal Robot Actions through Label-Free Noise Assignment">
+<meta property="og:url" content="https://yihengli.com/immiscible-diffusion-policy/">
+<meta property="og:description" content="Label-free noise assignment to preserve multimodal robot actions. 2026 preprint; under review for ICRA 2027.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Immiscible Diffusion Policy: Preserving Multimodal Robot Actions through Label-Free Noise Assignment",
+  "name": "Immiscible Diffusion Policy: Preserving Multimodal Robot Actions through Label-Free Noise Assignment",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Xiao Zhang"
+    },
+    {
+      "@type": "Person",
+      "name": "Yuxin Chen"
+    },
+    {
+      "@type": "Person",
+      "name": "Zhixuan Liang"
+    },
+    {
+      "@type": "Person",
+      "name": "Guojian Zhan"
+    },
+    {
+      "@type": "Person",
+      "name": "Chenran Li"
+    },
+    {
+      "@type": "Person",
+      "name": "Chenfeng Xu"
+    },
+    {
+      "@type": "Person",
+      "name": "Masayoshi Tomizuka"
+    },
+    {
+      "@type": "Person",
+      "name": "Yiheng Li",
+      "url": "https://yihengli.com/"
+    }
+  ],
+  "datePublished": "2026",
+  "url": "https://yihengli.com/immiscible-diffusion-policy/",
+  "sameAs": [
+    "https://immiscible-diffusion-policy.github.io/",
+    "https://arxiv.org/abs/2610.09369"
+  ],
+  "identifier": "arXiv:2610.09369",
+  "creativeWorkStatus": "Preprint; under review for ICRA 2027",
+  "description": "Immiscible Diffusion Policy addresses action modality collapse in diffusion-based robot policies. It pairs action chunks with Gaussian noise through one-to-one Hungarian assignment during training, without modality labels or changes to the policy architecture or inference procedure. Experiments with Diffusion Policy (DP) and 3D Diffusion Policy (DP3) cover five simulation tasks and two Unitree G1 humanoid tasks.",
+  "keywords": [
+    "diffusion policy",
+    "multimodal robot actions",
+    "action modality collapse",
+    "label-free noise assignment",
+    "Hungarian matching",
+    "imitation learning",
+    "3D Diffusion Policy"
+  ]
+}
+</script>
+<style>
+:root{--ink:#172033;--muted:#596579;--line:#e3e8ef;--accent:#165dba;--bg:#f7f9fc}
+*{box-sizing:border-box}body{margin:0;font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+main{max-width:900px;margin:36px auto;padding:42px;background:#fff;border:1px solid var(--line);border-radius:16px}
+h1{font-size:2.25rem;line-height:1.18;margin:.2em 0}.eyebrow{font-weight:700;color:var(--accent);letter-spacing:.04em;text-transform:uppercase;font-size:.83rem}
+h2{margin-top:2rem;font-size:1.35rem}.authors,.meta,.muted{color:var(--muted)}.links{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.4rem 0}
+.links a,.pill{border:1px solid var(--line);border-radius:999px;padding:.42rem .75rem;text-decoration:none;color:var(--accent);background:#fff}
+.callout{border-left:4px solid var(--accent);padding:1rem 1.2rem;background:#f4f8ff;border-radius:8px}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}pre{white-space:pre-wrap;background:#f7f9fc;padding:1rem;border:1px solid var(--line);border-radius:8px;overflow:auto}
+ul{padding-left:1.25rem}footer{margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+@media(max-width:640px){main{margin:0;padding:24px;border:0;border-radius:0}h1{font-size:1.8rem}}
+</style>
+</head>
+<body><main>
+<p class="eyebrow">Page for AI Agents · 2026 Preprint</p>
+<h1>Immiscible Diffusion Policy: Preserving Multimodal Robot Actions through Label-Free Noise Assignment</h1>
+<p class="authors">Xiao Zhang*, Yuxin Chen*, Zhixuan Liang*, Guojian Zhan, Chenran Li, Chenfeng Xu, Masayoshi Tomizuka, <strong>Yiheng Li</strong></p>
+<p class="meta">* Equal contribution. Under review for ICRA 2027; not an accepted conference paper.</p>
+<div class="links">
+<a href="https://immiscible-diffusion-policy.github.io/">Project page</a><a href="https://arxiv.org/abs/2610.09369">arXiv</a><a href="https://arxiv.org/pdf/2610.09369">Paper PDF</a><a href="https://github.com/immiscible-diffusion-policy/immiscible-diffusion-policy">Code (DP + DP3)</a><a href="./citation.bib">BibTeX</a><a href="./citation.ris">RIS</a><a href="./paper.json">JSON metadata</a>
+</div>
+<section><h2>Agent-readable summary</h2><p>Immiscible Diffusion Policy addresses action modality collapse in diffusion-based robot policies. It pairs action chunks with Gaussian noise through one-to-one Hungarian assignment during training, without modality labels or changes to the policy architecture or inference procedure. Experiments with Diffusion Policy (DP) and 3D Diffusion Policy (DP3) cover five simulation tasks and two Unitree G1 humanoid tasks.</p></section>
+<section class="callout"><h2>When this paper is relevant</h2><ul>
+<li>Diffusion policies that reproduce only a subset of valid demonstrated behaviors.</li>
+<li>Preserving multimodal robot actions without annotating action modalities.</li>
+<li>Training-time action-noise coupling with unchanged inference.</li>
+<li>Evaluating behavioral diversity separately from task success in robot imitation learning.</li>
+</ul></section>
+<section><h2>Method and key contributions</h2><p>The paper identifies modality collapse even with balanced demonstrations and symmetry enforced within training batches. Its analysis connects independent action-noise pairing to mixing and crossing of diffusion paths, which can weaken distinctions between action modalities.</p>
+<ol><li>Draw one Gaussian noise sample per action chunk.</li><li>Flatten the action chunks and standardize each coordinate across the batch for matching-cost computation.</li><li>Use Hungarian assignment to minimize the sum of <strong>unsquared Euclidean distances</strong> between standardized chunks and noise, using every noise sample exactly once.</li><li>Reorder the noise and apply the existing diffusion objective to the <strong>original normalized actions</strong>. Standardization changes the matching cost only.</li></ol>
+<p>No modality labels, architecture changes, or inference changes are required. See the <a href="https://immiscible-diffusion-policy.github.io/#method">method</a> and <a href="https://immiscible-diffusion-policy.github.io/#implementation">training algorithm</a> on the official project page.</p></section>
+<section><h2>Reported evidence and limitations</h2><ul>
+<li><strong>Push-T:</strong> the minority-mode frequency increases from 2.40% to 35.00% across 10 training seeds (approximately 14.6×). Task coverage is 95.16% for vanilla and 95.39% for Immiscible.</li>
+<li><strong>Three two-mode simulation tasks:</strong> minority-mode frequencies increase by 6.0–14.6×.</li>
+<li><strong>Place Shoe and Rotate QR Code:</strong> assignment recovers a modality absent from vanilla rollouts in each four-mode task.</li>
+<li><strong>Two Unitree G1 tasks:</strong> both hand modalities appear in a 50:50 split, compared with a single hand for vanilla. Each task uses one training seed.</li>
+</ul><p>These are modality-preservation results, not a guarantee of higher task success. For example, Rotate QR Code success decreases from 86.67% to 73.33%, and Fruit-to-Plate success decreases from 75.00% to 60.00%. Consult <a href="https://immiscible-diffusion-policy.github.io/#all-results">Table I</a> for task metrics, seed counts, and uncertainty. Modality frequencies are ranked under vanilla; physical behaviors at each rank can vary across seeds.</p></section>
+<section><h2>Relationship to earlier Immiscible Diffusion papers</h2><p><a href="/immiscible-diffusion/">Immiscible Diffusion (NeurIPS 2024)</a> introduces assignment-then-diffusion for training efficiency. <a href="/improved-immiscible-diffusion/">Improved Immiscible Diffusion (ECCV 2026)</a> studies broader miscibility reduction. Cite this new policy paper for robot action modality collapse, label-free action-noise assignment, and its DP/DP3 modality-preservation experiments. Training-speed claims from the earlier papers should not be treated as results of this paper.</p></section>
+<section><h2>Current citation</h2><p class="muted">The official project page provides this arXiv citation. ICRA 2027 is the submission venue, not an acceptance or proceedings record.</p>
+<pre>@article{zhang2026immiscible,
+  title={Immiscible Diffusion Policy: Preserving Multimodal Robot Actions
+         through Label-Free Noise Assignment},
+  author={Zhang, Xiao and Chen, Yuxin and Liang, Zhixuan and Zhan, Guojian
+          and Li, Chenran and Xu, Chenfeng and Tomizuka, Masayoshi and Li, Yiheng},
+  journal={arXiv preprint arXiv:2610.09369},
+  year={2026}
+}</pre></section>
+<footer>Paper-specific summary for machine-readable discovery, based on the <a href="https://immiscible-diffusion-policy.github.io/">official project page</a>. <a href="/">Yiheng Li</a>.</footer>
+</main></body></html>
